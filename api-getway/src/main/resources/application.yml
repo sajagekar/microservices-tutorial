@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: CITIZEN-SERVICE
+        uri:
+          lb://CITIZEN-SERVICE
+        predicates:
+        - Path=/citizen/**
+        
+      - id: VACCINE-CENTER
+        uri:
+          lb://VACCINE-CENTER
+        predicates:
+        - Path=/vaccine-center/**
+        
