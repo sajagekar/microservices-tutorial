@@ -15,13 +15,21 @@ public class VaccineService {
 
 	@Autowired
 	private RestTemplate restTemplate;
-	
+
 	public VaccineCenter getCenterDetails(int id) {
-		
-		java.util.List<Citizen> cts = restTemplate .getForObject("http://CITIZEN-SERVICE/citizen/findByVaccineCenter/"+id, java.util.List.class);
-		
+
+		java.util.List<Citizen> cts = restTemplate
+				.getForObject("http://CITIZEN-SERVICE/citizen/findByVaccineCenter/" + id, java.util.List.class);
+
 		VaccineCenter vc = new VaccineCenter(id, "GOV hospital", "Pune", cts);
-		
+
+		return vc;
+	}
+
+	public VaccineCenter getFallbackData(int id) {
+
+		VaccineCenter vc = new VaccineCenter(id, "GOV hospital", "Pune");
+
 		return vc;
 	}
 }
